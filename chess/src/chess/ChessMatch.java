@@ -5,6 +5,8 @@ import boardgame.Position;
 import chess.pieces.King;
 import chess.pieces.Rook;
 
+import java.awt.desktop.AboutEvent;
+
 public class ChessMatch {
     private Board board;
     public ChessMatch(){
@@ -22,10 +24,13 @@ public class ChessMatch {
         return mat;
     }
 
+    private void placeNewPiece(char column, int row, ChessPiece piece){
+        board.placePieces(piece, new ChessPosition(column,row).toPosition());
+    }
     private void initialSetup(){
-        board.placePieces(new Rook(board, Color.White), new Position(2,1));
-        board.placePieces(new King(board, Color.Black), new Position(0,4));
-        board.placePieces(new King(board, Color.White), new Position(7,4));
+       placeNewPiece('b',6, new Rook(board, Color.White));
+       placeNewPiece('e',8,new King(board, Color.Black));
+       placeNewPiece('e',1,new King(board, Color.White));
     }
 
 }
